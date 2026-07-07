@@ -14,7 +14,6 @@ A powerful Magento 2 extension that enhances checkout address forms by convertin
   * **Manage Zip Codes**: Full CRUD management interface for postal/zip codes associated with specific cities.
 * **Import Manager**: Bulks import States, Cities, and Zip Codes via CSV uploads directly in the admin panel.
 * **Flexible Configuration**: Toggle the extension, custom links, and link titles globally or per store view.
-* **CI/CD Integration**: Pre-configured `Jenkinsfile` for packaging and deployment to Gemfury composer repository.
 
 ---
 
@@ -22,22 +21,19 @@ A powerful Magento 2 extension that enhances checkout address forms by convertin
 
 ```
 .
-├── Custom/
-│   └── City/
-│       ├── Block/           # Admin Grid & Edit blocks
-│       ├── Controller/      # Admin and Frontend controller actions
-│       ├── Helper/          # Helper classes for configuration settings
-│       ├── Model/           # Database Models, Resource Models, and Collections
-│       ├── Plugin/          # Address sorting and estimation plugins/preferences
-│       ├── Setup/           # Schema Install/Upgrade scripts
-│       ├── etc/             # XML configurations (menu, system config, di, routes)
-│       ├── registration.php # Component registration file
-│       ├── composer.json    # Composer requirements and autoloading settings
-│       ├── Jenkinsfile      # Build and deployment pipeline script
-│       └── view/            # Frontend and Adminhtml layouts, templates, and Javascript/CSS files
-├── .gitattributes           # Git repository attributes
-├── .gitignore               # Git ignored files configuration
-└── README.md                # This file
+├── Block/           # Admin Grid & Edit blocks
+├── Controller/      # Admin and Frontend controller actions
+├── Helper/          # Helper classes for configuration settings
+├── Model/           # Database Models, Resource Models, and Collections
+├── Plugin/          # Address sorting and estimation plugins/preferences
+├── Setup/           # Schema Install/Upgrade scripts
+├── etc/             # XML configurations (menu, system config, di, routes)
+├── registration.php # Component registration file
+├── composer.json    # Composer requirements and autoloading settings
+├── view/            # Frontend and Adminhtml layouts, templates, and Javascript/CSS files
+├── .gitattributes   # Git repository attributes
+├── .gitignore       # Git ignored files configuration
+└── README.md        # This file
 ```
 
 ---
@@ -48,7 +44,7 @@ A powerful Magento 2 extension that enhances checkout address forms by convertin
 
 1. Clone or download this repository.
 2. Create the directory structure in your Magento root: `app/code/Custom/City`.
-3. Copy the contents of `Custom/City` from this repository into that folder.
+3. Copy the contents of this repository into that folder.
 
 ### Register and Enable the Module
 
