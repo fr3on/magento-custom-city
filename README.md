@@ -22,22 +22,20 @@ A powerful Magento 2 extension that enhances checkout address forms by convertin
 
 ```
 .
-├── Custom/
-│   └── City/
-│       ├── Block/           # Admin Grid & Edit blocks
-│       ├── Controller/      # Admin and Frontend controller actions
-│       ├── Helper/          # Helper classes for configuration settings
-│       ├── Model/           # Database Models, Resource Models, and Collections
-│       ├── Plugin/          # Address sorting and estimation plugins/preferences
-│       ├── Setup/           # Schema Install/Upgrade scripts
-│       ├── etc/             # XML configurations (menu, system config, di, routes)
-│       ├── registration.php # Component registration file
-│       ├── composer.json    # Composer requirements and autoloading settings
-│       ├── Jenkinsfile      # Build and deployment pipeline script
-│       └── view/            # Frontend and Adminhtml layouts, templates, and Javascript/CSS files
-├── .gitattributes           # Git repository attributes
-├── .gitignore               # Git ignored files configuration
-└── README.md                # This file
+├── Block/           # Admin Grid & Edit blocks
+├── Controller/      # Admin and Frontend controller actions
+├── Helper/          # Helper classes for configuration settings
+├── Model/           # Database Models, Resource Models, and Collections
+├── Plugin/          # Address sorting and estimation plugins/preferences
+├── Setup/           # Schema Install/Upgrade scripts
+├── etc/             # XML configurations (menu, system config, di, routes)
+├── registration.php # Component registration file
+├── composer.json    # Composer requirements and autoloading settings
+├── Jenkinsfile      # Build and deployment pipeline script
+├── view/            # Frontend and Adminhtml layouts, templates, and Javascript/CSS files
+├── .gitattributes   # Git repository attributes
+├── .gitignore       # Git ignored files configuration
+└── README.md        # This file
 ```
 
 ---
@@ -48,7 +46,7 @@ A powerful Magento 2 extension that enhances checkout address forms by convertin
 
 1. Clone or download this repository.
 2. Create the directory structure in your Magento root: `app/code/Custom/City`.
-3. Copy the contents of `Custom/City` from this repository into that folder.
+3. Copy the contents of this repository into that folder.
 
 ### Register and Enable the Module
 
@@ -112,23 +110,3 @@ php bin/magento custom:city:seed
 # Seed a specific country list (e.g. SA only)
 php bin/magento custom:city:seed --countries=SA
 ```
-
----
-
-## 🚀 CI/CD and Deployment
-
-The repository includes a GitHub Actions CI/CD workflow defined in `.github/workflows/ci-cd.yml`.
-
-### Workflow Jobs
-1. **Code Quality & Syntax Validation**: Validates `composer.json` and runs PHP lint syntax checks on every push or pull request to the `main` branch.
-2. **Build & Deploy**: Triggered on direct pushes to `main`. It automatically packages and deploys the latest version to the private Gemfury composer repository and sends a Pushover notification.
-
-### Required GitHub Secrets
-To enable successful deployment and notifications, the following secrets must be configured in your GitHub repository (**Settings** ➔ **Secrets and variables** ➔ **Actions**):
-
-| Secret Name | Description |
-|---|---|
-| `FURY_EMAIL` | The login email for Gemfury. |
-| `FURY_PASS` | The password or auth token for Gemfury. |
-| `PUSHOVER_TOKEN` | The Pushover API token for sending notifications. |
-| `PUSHOVER_USER` | The Pushover user/group key to receive notifications. |

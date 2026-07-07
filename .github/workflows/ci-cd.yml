@@ -25,13 +25,13 @@ jobs:
 
       - name: Validate composer.json
         run: |
-          if [ -f Custom/City/composer.json ]; then
-            composer validate --working-dir=Custom/City
+          if [ -f composer.json ]; then
+            composer validate
           fi
 
       - name: PHP Syntax Check (Lint)
         run: |
-          find Custom/City -type f -name "*.php" -exec php -l {} \; | (! grep -v "No syntax errors detected")
+          find . -type f -name "*.php" -not -path "./vendor/*" -exec php -l {} \; | (! grep -v "No syntax errors detected")
 
   deploy:
     name: Build & Deploy to Gemfury
@@ -68,8 +68,8 @@ jobs:
           GIT_BRANCH="main"
           GIT_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           
-          PACKAGE_NAME=$(jq -r '.name' Custom/City/composer.json)
-          PACKAGE_VERSION=$(jq -r '.version' Custom/City/composer.json)
+          PACKAGE_NAME=$(jq -r '.name' composer.json)
+          PACKAGE_VERSION=$(jq -r '.version' composer.json)
           
           NOTE_MESSAGE="Please update composer. New commit at [$PACKAGE_NAME@$PACKAGE_VERSION] with message: $GIT_COMMIT_MESSAGE on (${GIT_BRANCH}) by: ($GIT_COMMITTER_NAME)"
           
