@@ -14,7 +14,6 @@ A powerful Magento 2 extension that enhances checkout address forms by convertin
   * **Manage Zip Codes**: Full CRUD management interface for postal/zip codes associated with specific cities.
 * **Import Manager**: Bulks import States, Cities, and Zip Codes via CSV uploads directly in the admin panel.
 * **Flexible Configuration**: Toggle the extension, custom links, and link titles globally or per store view.
-* **CI/CD Integration**: Pre-configured `Jenkinsfile` for packaging and deployment to Gemfury composer repository.
 
 ---
 
@@ -31,7 +30,6 @@ A powerful Magento 2 extension that enhances checkout address forms by convertin
 ├── etc/             # XML configurations (menu, system config, di, routes)
 ├── registration.php # Component registration file
 ├── composer.json    # Composer requirements and autoloading settings
-├── Jenkinsfile      # Build and deployment pipeline script
 ├── view/            # Frontend and Adminhtml layouts, templates, and Javascript/CSS files
 ├── .gitattributes   # Git repository attributes
 ├── .gitignore       # Git ignored files configuration
