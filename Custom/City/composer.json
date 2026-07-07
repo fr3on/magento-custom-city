@@ -1,0 +1,29 @@
+{
+  "name": "custom/city",
+  "description": "City &amp; Region Manager is an extension that allows your customers to select desired state and city from dropdown list.",
+  "type": "magento2-module",
+  "version": "4.0.2",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "require": {
+    "php": "~7.0|~7.1"
+  },
+  "authors": [
+    {
+      "name": "Aneel Kumar",
+      "email": "developer.anil88@gmail.com",
+      "homepage": "",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Custom\\City\\": ""
+    }
+  }
+}

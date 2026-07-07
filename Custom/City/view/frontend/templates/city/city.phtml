@@ -1,0 +1,126 @@
+<?php
+if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/enabled')){
+    $curl = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+
+    if (strpos($curl,'checkout')!==false || strpos($curl,'onepage')!==false || strpos($curl,'address')!==false) {
+
+        $url = $this->getUrl('city/index/cities');
+        $zip_url = $this->getUrl('city/index/zips');
+        $city_link = '';
+        $city_title = __('City not in list');
+        $zip_link = '';
+        $zip_title = __('Zip not in list');
+
+        if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/citynotinlist')){
+            $city_link = 'enabled';
+            if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/citynotinlist_title')!=""){
+                $city_title = $this->helper('Custom\City\Helper\Data')->getConfig('city/general/citynotinlist_title');
+            }
+        }
+
+        if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/zipnotinlist')){
+            $zip_link = 'enabled';
+            if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/zipnotinlist_title')!=""){
+                $zip_title = $this->helper('Custom\City\Helper\Data')->getConfig('city/general/zipnotinlist_title');
+            }
+        }
+
+        if(strpos($curl,'checkout')!==false || strpos($curl,'onepage')!==false){
+            $page = 'checkout';
+        }
+        else if(strpos($curl,'customer')!==false && strpos($curl,'address')!==false){
+            $page = 'cutomer_address';
+        }
+        else{
+            $page = 'edit';
+        }
+
+?>
+<script type="text/javascript">
+        var data_city_link="<?php echo $city_link;?>";
+        var data_city_title="<?php echo $city_title;?>";
+        var data_zip_link="<?php echo $zip_link;?>";
+        var data_zip_title="<?php echo $zip_title;?>";
+        var data_url="<?php echo $url;?>";
+        var data_zip_url="<?php echo $zip_url;?>";
+        var loading_url = "<?php echo $this->getViewFileUrl('Custom_City::images/loader-1.gif');?>";
+        <?php if($page=='checkout'){?>
+        require(["jquery","domReady!"], function($){
+            <?php
+            if(strpos($curl,'cart')!==false){
+                ?>
+                /*var retries = 0;
+                var shippingEstemationFormWatch = setInterval(function(){
+                    if(retries > 10000) clearInterval(shippingEstemationFormWatch);
+                    if(jQuery('#shipping-zip-form').length != 0){
+                        shippingmainCityCart();
+                        clearInterval(shippingEstemationFormWatch);
+                    }
+                    retries++;
+                }, 500);*/
+            <?php
+            }else{
+                ?>
+                /**
+                 * Shipping Form Watcher
+                 * @type {number}
+                 */
+                var shippingFormWatch = setInterval(function(){
+                    if(jQuery('.onestep-shipping-address [name="region_id"]').length != 0){
+                        shippingmainCityCall();
+                        clearInterval(shippingFormWatch);
+                    }
+                }, 500);
+
+                var shippingAmastyFormWatch = setInterval(function(){
+                    if(jQuery('#shipping-new-address-form [name="region_id"]').length != 0){
+                        shippingAmastyMainCityCall();
+                        clearInterval(shippingAmastyFormWatch);
+                        console.log('trigger--->');
+                    }
+                }, 500);
+
+                /**
+                 * Billing Form Watcher
+                 * @type {number}
+                 */
+                var billingFormWatch = setInterval(function(){
+                    if(jQuery('.onestep-billing-address [name="region_id"]').length != 0){
+                        bilingmainCityCall();
+                        clearInterval(billingFormWatch);
+                    }
+                }, 500);
+            <?php
+            }
+            ?>
+        });
+        <?php
+        }else if($page=='cutomer_address'){
+            ?>
+            require(["jquery","domReady!"], function($){
+                /**
+                 * Customer Address Form Watcher
+                 * @type {number}
+                 */
+                var customerAddressFormWatch = setInterval(function(){
+                    console.log(jQuery('.form-address-edit').length, jQuery('.form-address-edit [name="region_id"]').length);
+                    if(jQuery('.form-address-edit [name="region_id"]').length != 0){
+                        customerAddress();
+                        clearInterval(customerAddressFormWatch);
+                    }
+                }, 500);
+                //setTimeout(function(){ customerAddress();}, 2000);
+            });
+            <?php
+        } else {
+            ?>
+            /*require(["jquery","domReady!"], function($){
+                setTimeout(function(){ addressPageCall('edit');}, 2000);
+            });*/
+            <?php
+        }?>
+    </script>
+<?php
+    }
+}
+?>

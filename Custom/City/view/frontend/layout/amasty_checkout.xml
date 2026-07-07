@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Checkout
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Amasty\Checkout\Block\Onepage\Head" name="amasty.checkout.head"  template="Amasty_Checkout::onepage/head.phtml" after="-"/>
+            <block class="Magento\Framework\View\Element\Template" name="city.block" template="Custom_City::city/city.phtml" after="-"/>
+        </referenceBlock>
+    </body>
+</page>

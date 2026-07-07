@@ -1,0 +1,13 @@
+# Set default behavior to automatically normalize line endings.
+* text=auto
+
+# Force bash scripts/Jenkinsfile to always keep LF line endings.
+Jenkinsfile text eol=lf
+*.sh text eol=lf
+
+# Deny binary files from being modified by line ending normalization.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
