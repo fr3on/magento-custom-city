@@ -1,0 +1,47 @@
+<?php
+if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/enabled')){
+    $curl = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+
+    if (strpos($curl,'customer')!==false) {
+        $url = $this->getUrl('city/index/cities', ['form_key' => $block->getFormKey()]);
+        $zip_url = $this->getUrl('city/index/zips');
+        $city_link = '';
+        $city_title = 'City not in list';
+        $zip_link = '';
+        $zip_title = 'Zip not in list';
+
+        if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/citynotinlist')){
+            $city_link = 'enabled';
+            if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/citynotinlist_title')!=""){
+                $city_title = $this->helper('Custom\City\Helper\Data')->getConfig('city/general/citynotinlist_title');
+            }
+        }
+
+        if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/zipnotinlist')){
+            $zip_link = 'enabled';
+            if($this->helper('Custom\City\Helper\Data')->getConfig('city/general/zipnotinlist_title')!=""){
+                $zip_title = $this->helper('Custom\City\Helper\Data')->getConfig('city/general/zipnotinlist_title');
+            }
+        }
+
+        if(strpos($curl,'customer')!==false){
+            $page = 'customer';
+        }
+        else{
+            $page = 'edit';
+        }
+
+?>
+<script type="text/javascript">
+        var data_city_link="<?php echo $city_link;?>";
+        var data_city_title="<?php echo $city_title;?>";
+        var data_zip_link="<?php echo $zip_link;?>";
+        var data_zip_title="<?php echo $zip_title;?>";
+        var data_url="<?php echo $url;?>";
+        var data_zip_url="<?php echo $zip_url;?>";
+        var loading_url = "<?php echo $this->getViewFileUrl('Custom_City::images/loader-1.gif');?>";
+    </script>
+<?php
+    }
+}
+?>

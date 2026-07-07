@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Checkout\Block\Cart\LayoutProcessor"
+                type="Custom\City\Model\Checkout\Block\Cart\Shipping" />
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="custom_city_seed" xsi:type="object">Custom\City\Console\Command\SeedCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
